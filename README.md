@@ -1,4 +1,4 @@
-site-design
+PHP Freaks: Design
 ===========
 
-New site design for PHP Freaks
+This repository is for versioning of the new & upcoming PHP Freaks design.
