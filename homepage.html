@@ -90,7 +90,7 @@
         </nav>
     </div>
 </header>
-<div role="main" id="content-area">
+<div role="main" id="content-area" class="has-sidebar">
     <div class="row">
         <div class="large-12 columns">
             <div class="row" id="content-nav">
@@ -115,7 +115,7 @@
                     </form>
                 </div>
             </div>
-            <div class="row">
+            <div class="row" id="content">
                 <div class="large-9 columns">
                     <section class="recent article-list">
                         <h3>Recent Content</h3>
@@ -324,32 +324,86 @@
                         </article>
                     </section>
                 </div>
-                <aside class="large-3 columns">
-                    <h5>Tutorials</h5>
-                    <ul class="side-nav">
-                        <li><a href="#">PHP</a></li>
-                        <li><a href="#">Database</a></li>
-                        <li><a href="#">JavaScript</a></li>
-                        <li><a href="#">HTML / CSS</a></li>
-                    </ul>
-                    <h5>Recent Comments</h5>
-                    <ul class="side-nav">
-                        <li>
-                            <p>
-                                <strong><a href="#" title="Philip Lawrence">Philip Lawrence</a></strong>
-                                "Lorem ipsum dolor sit amet, veren&hellip;"<br />
-                                <a href="#">Article Title</a>
-                            </p>
-                        </li>
-                        <li>
-                            <h6>Philip Lawrence says&hellip;</h6>
-                            <p>"Lorem ipsum dolor sit amet, veren&hellip;" on <a href="#">Article Title</a></p>
-                        </li>
-                        <li>
-                            <h6>Philip Lawrence says&hellip;</h6>
-                            <p>"Lorem ipsum dolor sit amet, veren&hellip;" on <a href="#">Article Title</a></p>
-                        </li>
-                    </ul>
+                <aside class="large-3 columns" id="sidebar">
+                    <div class="row">
+                        <div class="large-12 small-6 columns">
+                            <h5>Tutorials</h5>
+                            <ul class="side-nav">
+                                <li><a href="#">PHP</a></li>
+                                <li><a href="#">Database</a></li>
+                                <li><a href="#">JavaScript</a></li>
+                                <li><a href="#">HTML / CSS</a></li>
+                            </ul>
+                        </div>
+                        <div class="large-12 small-6 columns">
+                            <h5>Recent Comments</h5>
+                            <ul class="quoted">
+                                <li>
+                                    <a href="#">
+                                        <h6>A simple Debian based dev environment</h6>
+                                        <blockquote>
+                                            Thanks for this - works very well.
+                                            <cite>Bazzaah<time itemprop="pubdate" datetime="2013-07-05" class="right" title="July 5, 2013 15:45 GMT">Today, 3:45PM</time></cite>
+                                        </blockquote>
+                                    </a>
+                                </li>
+                                <li class="separator"></li>
+                                <li>
+                                    <a href="#">
+                                        <h6>A simple Debian based dev environment</h6>
+                                        <blockquote>
+                                            Great! Will set this up later.
+                                            <cite>Bazzaah<time itemprop="pubdate" datetime="2013-07-05" class="right" title="July 5, 2013 13:45 GMT">Today, 1:45PM</time></cite>
+                                        </blockquote>
+                                    </a>
+                                </li>
+                                <li class="separator"></li>
+                                <li>
+                                    <a href="#">
+                                        <h6>A simple Debian based dev environment</h6>
+                                        <blockquote>
+                                            All commands where issued using the Bash&hellip;
+                                            <cite>trq<time itemprop="pubdate" datetime="2013-07-04" class="right" title="July 4, 2013 11:03 GMT">Yesterday, 11:03AM</time></cite>
+                                        </blockquote>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="large-12 small-6 columns">
+                            <h5>Recent Topics</h5>
+                            <ul class="quoted">
+                                <li>
+                                    <a href="#">
+                                        <h6>Repo &amp; updates</h6>
+                                        <blockquote>
+                                            Guys - I've moved the design stuff over into it's own repo&hellip;
+                                            <cite>Philip<time itemprop="pubdate" datetime="2013-07-05" class="right" title="July 5, 2013 15:45 GMT">Today, 12:54 AM</time></cite>
+                                        </blockquote>
+                                    </a>
+                                </li>
+                                <li class="separator"></li>
+                                <li>
+                                    <a href="#">
+                                        <h6>How to display content from one table based on ID from another table</h6>
+                                        <blockquote>
+                                            Hi there, Okay so I have a recordset created in dreamweaver,&hellip;
+                                            <cite>evanpyrz_jm<time itemprop="pubdate" datetime="2013-07-05" class="right" title="July 5, 2013 15:45 GMT">Yesterday, 10:54 PM</time></cite>
+                                        </blockquote>
+                                    </a>
+                                </li>
+                                <li class="separator"></li>
+                                <li>
+                                    <a href="#">
+                                        <h6>Drupal, PHP to block specific domains from registering</h6>
+                                        <blockquote>
+                                            Hi all, Just need some help in amending some Drupal/PHP script&hellip;
+                                            <cite>Kolinski<time itemprop="pubdate" datetime="2013-07-05" class="right" title="July 5, 2013 15:45 GMT">Yesterday, 10:49 PM</time></cite>
+                                        </blockquote>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
                 </aside>
             </div>
         </div>

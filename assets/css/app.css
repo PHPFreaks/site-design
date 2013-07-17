@@ -192,7 +192,6 @@ ul.quoted-list
     height: 100%; /* @TODO: figure out why this isn't working properly */
 }
 
-
 /* -----------------------------------------
    Shared: Content Nav (breadcrumbs+search)
 ----------------------------------------- */
@@ -246,6 +245,82 @@ ul.breadcrumbs li.current span
         transition: width 0.5s ease-out;
     }
 }
+/* -----------------------------------------
+   Shared: Sidebar
+----------------------------------------- */
+ul.quoted
+{
+    list-style-type: none;
+}
+ul.quoted li.separator 
+{
+    width: 80%;
+    padding: 0;
+    margin: 1em auto;
+    height: 1px;
+    background: #ccc;
+    background: -moz-linear-gradient(left, #fff 0%,#ccc 50%,#fff 100%); 
+    background: -webkit-linear-gradient(left, #fff 0%,#ccc 50%,#fff 100%); 
+    background: linear-gradient(left, #fff 0%,#ccc 50%,#fff 100%);
+}
+ul.quoted h6 
+{
+    color: #555;
+}
+ul.quoted blockquote
+{
+    padding-top: 0;
+    font-size: .85em;
+}
+ul.quoted cite > time 
+{
+    font-style: normal;
+    color: #CCC;
+}
+ul.quoted a:hover blockquote, 
+ul.quoted a:focus blockquote
+{
+    border-color: #1984bc;
+    color: #333;
+}
+ul.quoted a:hover h6, 
+ul.quoted a:focus h6,
+ul.quoted a:hover cite, 
+ul.quoted a:focus cite
+{
+    color: #1984bc;
+}
+ul.quoted a:hover cite > time, 
+ul.quoted a:focus cite > time 
+{
+    color: #777;
+}
+ul.quoted blockquote, 
+ul.quoted h6, 
+ul.quoted cite, 
+ul.quoted cite > time
+{
+    transition: all 0.3s ease-in;
+}
+aside h5
+{
+    margin-bottom: 0;
+}
+aside p
+{
+    color: #777;
+    font-size: .85em;
+}
+aside ul.quoted h6
+{
+    color: #777;
+    font-size: .85em;
+}
+aside ul.quoted blockquote
+{
+    color: #999;
+}
+
 /* -----------------------------------------
    Shared: Footer
 ----------------------------------------- */
