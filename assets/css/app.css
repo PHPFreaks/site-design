@@ -97,7 +97,7 @@ figcaption
     .top-bar .name h1
     {
         padding: 0;
-        margin: 15px 0 0 15px;
+        margin: .8em 0 0 .8em;
     }
         body > header > .row 
     {
@@ -110,7 +110,7 @@ figcaption
         background: linear-gradient(to bottom,  #1984bc 0%,#0779b4 100%);
         filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1984bc', endColorstr='#0779b4',GradientType=0 );
         border: 1px solid #368CBA;
-        box-shadow:  0px 0px 20px 0px rgba(0, 0, 0, .4);
+        box-shadow:  0 0 1.2em 0 rgba(0, 0, 0, .4);
         border-bottom: 0;
         color: #fff;
     } 
@@ -123,7 +123,7 @@ figcaption
     body > header
     {
         margin: 0;
-        padding: 48px 0 0;
+        padding: 3em 0 0;
         display: block;
         position: relative;
         background-color: #2d2d2d;
@@ -142,16 +142,16 @@ figcaption
     }
     .top-bar-section > ul > li  ul
     {
-        box-shadow:  0px 0px 30px 0px rgba(0, 0, 0, .3);
+        box-shadow:  0 0 1.4em 0 rgba(0, 0, 0, .3);
     }
     .top-bar-section > ul > li  > a
         {
-        margin-top: 4px;
-        padding: 36px 16px !important;
-        line-height: 18px !important;
-        font: 600 13px 'Open Sans', sans-serif;
+        margin-top: 4px; /* 4px for border matchup*/
+        padding: 3em 1.4em !important;
+        line-height: 1.4 !important;
+        font: 600 .75em 'Open Sans', sans-serif;
         color: #81c7e7;
-        text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.5);
+        text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.4);
         text-transform: uppercase;
         text-decoration: none;
         display: block;
@@ -169,11 +169,11 @@ figcaption
         filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1783bb', endColorstr='#06699c',GradientType=0 );
         border-top: 4px solid #077ab6;
         margin-top: 0;
-        padding-top: 32px;
+        padding-top: 3em;
     }
     .top-bar-section .has-dropdown > a:after
     {
-        margin-top: 23px;
+        margin-top: 1.9em;
     }
     .top-bar-section .dropdown 
     {
@@ -181,13 +181,13 @@ figcaption
         border-left: solid 4px #1783bb;
         border-right: 1px solid #d9d9d9;
         border-bottom: 1px solid #d9d9d9;
-        min-width: 200px;
+        min-width: 12em;
     }
     .top-bar-section .dropdown li a
     {
         background-color: #f2f2f2;
         color: #555555;
-        padding: 15px 20px;
+        padding: 1em 1.4em;
         border: 1px solid #e6e6e6;
         border-width: 1px 1px 0 0;
     }
@@ -223,7 +223,7 @@ figcaption
     border: 1px solid #dedede;
     border-top: 0;
     background-color: #fff;
-    box-shadow:  0px 0px 20px 0px rgba(0, 0, 0, .2);
+    box-shadow:  0 0 1.4em 0 rgba(0, 0, 0, .2);
     height: 100%; /* @TODO: figure out why this isn't working properly */
 }
 
@@ -233,13 +233,13 @@ figcaption
 #content-nav
 {
     border-bottom: 1px solid #f2f2f2;
-    margin-bottom: 15px;
+    margin-bottom: 1em;
 }
 ul.breadcrumbs
 {
     background: none;
     border: 0px;
-    padding: 16px 0;
+    padding: 1em 0;
     margin: 0;
 }
 ul.breadcrumbs li a, ul.breadcrumbs li span
@@ -261,7 +261,7 @@ ul.breadcrumbs li.current span
 #search 
 {
     margin: 0;
-    padding: 12px 0 0;
+    padding: .9em 0 0;
     font-size: .8em;
 }
 
@@ -372,7 +372,7 @@ body > footer p
 .article-list article
 {
     border-bottom: 1px solid #EDEDED;
-    padding: 10px 0;
+    padding: .8em 0;
 }
 article.teaser
 {
@@ -424,7 +424,7 @@ article .info time, #comments time
 }
 article .info p a
 { 
-    padding: 0 5px;
+    padding: 0 .3em;
     position: relative;
 }
 article.teaser h3
