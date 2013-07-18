@@ -43,6 +43,18 @@ ul.quoted-list
 {
     list-style-type: none;
 }
+.separator 
+{
+    width: 80%;
+    padding: 0;
+    margin: 1em auto;
+    height: 1px;
+    background: #ddd;
+    background: -moz-linear-gradient(left, #fff 0%,#ccc 50%,#fff 100%); 
+    background: -webkit-linear-gradient(left, #fff 0%,#ccc 50%,#fff 100%); 
+    background: linear-gradient(left, #fff 0%,#ccc 50%,#fff 100%);
+    border: 0;
+}
 /* -----------------------------------------
    Shared: Header
 ----------------------------------------- */
@@ -252,17 +264,6 @@ ul.quoted
 {
     list-style-type: none;
 }
-ul.quoted li.separator 
-{
-    width: 80%;
-    padding: 0;
-    margin: 1em auto;
-    height: 1px;
-    background: #ccc;
-    background: -moz-linear-gradient(left, #fff 0%,#ccc 50%,#fff 100%); 
-    background: -webkit-linear-gradient(left, #fff 0%,#ccc 50%,#fff 100%); 
-    background: linear-gradient(left, #fff 0%,#ccc 50%,#fff 100%);
-}
 ul.quoted h6 
 {
     color: #555;
@@ -358,6 +359,10 @@ article.teaser .article-info
 {
     text-align: center;
 }
+article.teaser .article-info hr.separator
+{
+    margin: .5em auto;
+}
 article.teaser .article-info .category
 {
     font-size: .8em;
@@ -392,9 +397,6 @@ article.teaser .article-info time
     line-height: 1.4;
     font-size: .7em;
     display: block;
-    margin-top: .7em;
-    border-top: 1px solid #EEE;
-    padding-top: .7em;
     color: #AAA;
 }
 article.teaser .article-info p a
