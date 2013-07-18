@@ -55,6 +55,29 @@ ul.quoted-list
     background: linear-gradient(left, #fff 0%,#ccc 50%,#fff 100%);
     border: 0;
 }
+code
+{
+    font-weight: normal;
+    line-height: 1.4;
+}
+pre, pre[class*="language-"]
+{
+    margin: 0;
+    padding: .75em;
+    font-size: .9em;
+    border: 1px solid #DDD;
+}
+figure
+{
+    margin: 0 0 1.25em;
+}
+figcaption
+{
+    font-style: italic;
+    font-size: .8em;
+    padding: .5em .25em;
+    color: #999;
+}
 /* -----------------------------------------
    Shared: Header
 ----------------------------------------- */
@@ -193,14 +216,14 @@ ul.quoted-list
 ----------------------------------------- */
 #content-area
 {
-    min-height: 60%; /* @TODO: Clean this up */
     position: relative;
 }
 #content-area > .row
 {
-    border: 1px solid #eee;
+    border: 1px solid #dedede;
+    border-top: 0;
     background-color: #fff;
-    box-shadow:  0px 0px 20px 0px rgba(0, 0, 0, .06);
+    box-shadow:  0px 0px 20px 0px rgba(0, 0, 0, .2);
     height: 100%; /* @TODO: figure out why this isn't working properly */
 }
 
@@ -355,15 +378,15 @@ article.teaser
 {
     
 }
-article.teaser .article-info 
+article .info 
 {
     text-align: center;
 }
-article.teaser .article-info hr.separator
+article .info hr.separator
 {
     margin: .5em auto;
 }
-article.teaser .article-info .category
+article .info .category
 {
     font-size: .8em;
     font-weight: bold;
@@ -372,18 +395,18 @@ article.teaser .article-info .category
     margin-top: 0.4em;
     padding-bottom: .5em;
 }
-article.teaser .article-info .category a
+article .info .category a
 {
     color: #777;
 }
-article.teaser .article-info .author 
+article .info .author 
 {
     font-style: normal;
     text-transform: uppercase;
     font-weight: bold;
     font-size: .9em;
 }
-article.teaser .article-info .author span
+article .info .author span
 {
     margin-bottom: .5em;
     display: block;
@@ -392,14 +415,14 @@ article.teaser .article-info .author span
     max-width: 80px;
     max-height: 80px;
 }
-article.teaser .article-info time
+article .info time, #comments time
 {
     line-height: 1.4;
     font-size: .7em;
     display: block;
     color: #AAA;
 }
-article.teaser .article-info p a
+article .info p a
 { 
     padding: 0 5px;
     position: relative;
@@ -413,28 +436,62 @@ article.teaser p
 {
     margin-bottom: 0;
 }
-article.teaser footer 
-{
-
-}
-article.teaser footer a, article.teaser .article-community a
+article.teaser footer a, article .community a
 {
     font-size: .8em;
     color: #BBB;
     padding-left: .3em;
     white-space: nowrap;
 }
-article.teaser footer a:hover, article.teaser footer a:focus,  article.teaser .article-community a:focus,  article.teaser .article-community a:hover
+article.teaser footer a:hover, article.teaser footer a:focus,  article .community a:focus,  article .community a:hover
 {
     color: #1984bc;
 }
-article.teaser .article-community a:last-of-type
+article .community a:last-of-type
 {
     padding-left: .1em;
 }
 
+/* -----------------------------------------
+   Article
+----------------------------------------- */
+article.full-article > footer
+{
+    border-top: 4px solid #1984bc;
+    border-bottom: 4px solid #1984bc;
+    margin: 1em 0;
+    padding: 1em 0;
+}
+
 
 /* -----------------------------------------
-   :
+   Comments
 ----------------------------------------- */
+#comments .author span
+{
+    display: block;
+    margin: 0 auto .3em;
+    max-width: 65px;
+}
+#comments .author
+{
+    font-style: normal;
+    text-align: center;
+}
+#comments time
+{
+    text-align: center;
+}
+#comments > article
+{
+    padding: 1em 0;
+}
 
+#comments > article:nth-child(odd)
+{
+    background: #EFEFEF;
+}
+#comments > article.author-reply
+{
+    background: #d5ebf5;
+}

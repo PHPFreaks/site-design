@@ -7,12 +7,13 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
 
-    <title>Homepage | PHP Freaks Design Sample Page</title>
+    <title>Article | PHP Freaks Design Sample Page</title>
 
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="assets/css/foundation.css">
-    <link rel="stylesheet" href="assets/css/app.css">
     <link rel="stylesheet" href="assets/css/icons.css">
+    <link rel="stylesheet" href="assets/css/prism.css">
+    <link rel="stylesheet" href="assets/css/app.css">
 
     <script src="assets/js/vendor/custom.modernizr.js"></script>
 
@@ -98,7 +99,9 @@
                     <nav>
                         <ul class="breadcrumbs">
                             <li><a href="/">PHP Freaks</a></li>
-                            <li class="current"><span>Home</span></li>
+                            <li><a href="#">Articles</a></li>
+                            <li><a href="#">PHP</a></li>
+                            <li class="current"><span>A simple Debian based dev environment</span></li>
                         </ul>
                     </nav>
                 </div>
@@ -117,218 +120,221 @@
             </div>
             <div class="row" id="content">
                 <div class="large-9 columns">
-                    <section class="recent article-list">
-                        <h3>Recent Content</h3>
+                    <article class="full-article">
+                        <header>
+                            <h2>A simple Debian based dev enviornment</h2>
+                        </header>
+                        <div class="article-content">
+                            <p>The <kbd>s</kbd> switch for chmod sets the sticky bit and ensures that all directories created within /var/www will also belong to the www group.</p>
+                            <p>We need to make sure www can write to the directories where our vhost configs are kept as well.</p>
+                            <figure>
+                               <pre><code class="language-bash">sudo chown :www /etc/apache2/sites-*</code></pre>
+                               <figcaption>Make the directory writeable!</figcaption>
+                            </figure>
+                            <p>Next, we are going to create a template vhost configuration. We will use this to generate configurations for each of our sites.</p>
+                            <figure>
+                                <pre><code class="language-bash">&lt;VirtualHost *:80&gt;
+    
+    ServerName {SITE}.local
+    
+    DocumentRoot /var/www/sites/{SITE}.local/htdocs
+
+    DirectoryIndex index.php
+
+    &lt;Directory /&gt;
+    Options FollowSymLinks
+    AllowOverride All
+    &lt;/Directory&gt;
+    
+    &lt;Directory /var/www/sites/{SITE}.local/htdocs&gt;
+    Options Indexes FollowSymLinks MultiViews
+    AllowOverride All
+    Order allow,deny
+    allow from all
+    &lt;/Directory&gt;
+
+    ErrorLog /var/www/sites/{SITE}.local/logs/error.log
+    LogLevel warn
+    CustomLog /var/www/sites/{SITE}.local/logs/access.log combined
+
+&lt;/VirtualHost&gt;</code></pre>
+                            </figure>
+                            <p>Save that as /etc/apache2/sites-available/example.conf</p>
+                            <p>Now, lets create a simple test site.</p>
+                            <figure>
+                                <pre><code class="language-php">echo ($test == 'false');</code></pre>
+                            </figure>
+                            <figure>
+                                <pre><code class="language-php">mkdir -p /var/www/sites/foo.local/{htdocs,logs}
+echo '&lt;?php phpinfo(); ?&gt;' > /var/www/sites/foo.local/htdocs/index.php
+cd /etc/apache2/sites-available
+sed -e 's/{SITE}/foo/g' example.conf > foo.conf
+sudo a2ensite foo.conf
+sudo /etc/init.d/apache2 restart
+echo '127.0.0.1 foo.local' | sudo tee -a /etc/hosts</code></pre>
+                            </figure>
+                            <p>Theres a few commands here, but its all pretty straight forward:</p>
+                            <p>The first line creates the minimal required directory structure for a new web site.<br />
+                            We then create an index.php file which has a call to phpinfo() in it.<br />
+                            Next we move into the directory where our vhost configs are stored.<br />
+                            We then create  a new vhosy config called foo.conf which is a copy of the example.conf from above, we use sed to replace all instances of '{SITE}' with 'foo'<br />
+                            Next, enable this vhost. This adds a symlink within /etc/apache2/sites-enabled<br />
+                            Restart Apache.<br />
+                            Add foo.local to our hosts file. This enables the url http://foo.local to resolve to our local machine and hence, be served by Apache.</p>
+                            <p>That's about it really. You can build quite a bit on this basic idea though. One thing I have implemented in a multi-user system is to make new commands available to the members of the 'www' group. 
+                            These commands are mostly just wrappers  around the stuff that requires sudo, but it does make the process allot cleaner from an end user point of view. 
+                            I might go into further details about that in another tutorial given the chance and the interest.</p>
+                            <p>One thing to note. If you need directories within your web site to be writable by Apache you will have to make them belong to the www-data group, and this group will need write permissions. eg;</p>
+                            <figure>
+                                <pre><code class="language-bash">mkdir -p /var/www/sites/foo.local/uploads
+sudo chown :www-data /var/www/sites/foo.local/uploads
+sudo chmod g+w /var/www/sites/foo.local/uploads</code></pre>
+                            </figure>
+                        </div>
                         
-                        <article class="row teaser">
-                            <div class="large-2 small-2 columns">
-                                <div class="info">
-                                    <div class="category">
-                                        <a href="#">Tutorial</a>
-                                    </div>
+                        <!-- End article content -->                        
+                        <footer>
+                            <div class="row">
+                                <div class="large-2 small-2 columns">
+                                    <a rel="author" href="http://misterphilip.com" class="right">
+                                        <span class="th">
+                                            <img src="assets/img/profile_pic.jpeg" alt="Philip Lawrence">
+                                        </span>
+                                    </a>
+                                </div>
+                                <div class="large-10 small-10 columns">
+                                    <h5><a rel="author" href="http://misterphilip.com">Philip Lawrence</a></h5>
+                                    <p class="author-bio">Philip is a <strong>Developer &amp; Web Analytics Engineer</strong>, specializing in complex web analytics solutions. He enjoys working with PHP, MySQL, HTML, CSS, JavaScript and much more!</p>
+                                </div>
+                            </div>
+                        </footer>
+                        <section id="comments">
+                            <h3>Comments</h3>
+                            <article class="row">
+                                <div class="large-2 columns">
                                     <address class="author">
                                         <a rel="author" href="http://misterphilip.com">
                                             <span class="th">
                                                 <img src="assets/img/profile_pic.jpeg">
                                             </span>
-                                            Philip Lawrence
+                                            Philip
                                         </a>
                                     </address>
-                                    <hr class="separator">
-                                    <time itemprop="pubdate" datetime="2013-07-05" class="time" title="July 5, 2013">Today, 3:45PM</time>
-                                    <p class="community">
-                                        <a href="#comments">3 <span class="icon icon-bubble"></span></a>
-                                        <a href="#users">15 <span class="icon icon-thumbs-up"></span></a>
-                                    </p>
+                                    <time itemprop="pubdate" datetime="2013-07-05" title="July 5, 2013">Today, 3:45PM</time>
                                 </div>
-                            </div>
-                            <div class="large-10 small-10 columns">
-                                <header>
-                                    <h3><a href="#">New Article 5</a></h3>
-                                </header>
-                                <p>Bacon ipsum dolor sit amet frankfurter beef ribs spare ribs salami capicola ball tip pancetta pork cow leberkas. Tri-tip pork pig, andouille flank beef ribs doner tongue rump jerky swine filet mignon hamburger. Drumstick meatloaf tenderloin jowl spare ribs beef pork ham hock bresaola beef ribs jerky turkey prosciutto rump meatball. Ball tip tongue doner, jerky bacon strip steak pancetta shankle cow meatloaf hamburger flank. Doner brisket pork loin shankle beef ribs, bacon shank fatback flank chuck kielbasa frankfurter meatloaf venison. Shoulder beef ribs ham hock short ribs sausage. Sausage chicken capicola jowl. &hellip; <a href="#" class="read-more">Read More &raquo;</a></p>
-                            </div>
-                        </article>
-                        
-                        <article class="row teaser">
-                            <div class="large-2 small-2 columns">
-                                <div class="info">
-                                    <div class="category">
-                                        <a href="#">Tutorial</a>
-                                    </div>
+                                <div class="large-10 columns">
+                                    <p>Just like reading our chat log again. Very good, assumes a little knowledge unless people just go willy nilly running commands. 
+                                    But good none the less. I took note of piping the new host to tee, something new. And good mention of writable directories. I'd be keen on seeing more about this too.</p>
+                                    <p>You might want to go through yourself or get someone else to go through and correct any spelling, I saw a few things.</p>
+                                </div>
+                            </article>
+                            <article class="row">
+                                <div class="large-2 columns">
                                     <address class="author">
                                         <a rel="author" href="http://misterphilip.com">
                                             <span class="th">
                                                 <img src="assets/img/profile_pic.jpeg">
                                             </span>
-                                            Philip Lawrence
+                                            Philip
                                         </a>
                                     </address>
-                                    <hr class="separator">
-                                    <time itemprop="pubdate" datetime="2013-07-05" class="time" title="July 5, 2013">Today, 3:45PM</time>
-                                    <p class="community">
-                                        <a href="#comments">3 <span class="icon icon-bubble"></span></a>
-                                        <a href="#users">15 <span class="icon icon-thumbs-up"></span></a>
-                                    </p>
+                                    <time itemprop="pubdate" datetime="2013-07-05" title="July 5, 2013">Today, 3:45PM</time>
                                 </div>
-                            </div>
-                            <div class="large-10 small-10 columns">
-                                <header>
-                                    <h3><a href="#">New Article 5</a></h3>
-                                </header>
-                                <p>Bacon ipsum dolor sit amet frankfurter beef ribs spare ribs salami capicola ball tip pancetta pork cow leberkas. Tri-tip pork pig, andouille flank beef ribs doner tongue rump jerky swine filet mignon hamburger. Drumstick meatloaf tenderloin jowl spare ribs beef pork ham hock bresaola beef ribs jerky turkey prosciutto rump meatball. Ball tip tongue doner, jerky bacon strip steak pancetta shankle cow meatloaf hamburger flank. Doner brisket pork loin shankle beef ribs, bacon shank fatback flank chuck kielbasa frankfurter meatloaf venison. Shoulder beef ribs ham hock short ribs sausage. Sausage chicken capicola jowl. &hellip; <a href="#" class="read-more">Read More &raquo;</a></p>
-                            </div>
-                        </article>
-                        
-                        <article class="row teaser">
-                            <div class="large-2 small-2 columns">
-                                <div class="info">
-                                    <div class="category">
-                                        <a href="#">Tutorial</a>
-                                    </div>
+                                <div class="large-10 columns">
+                                    <p>Many thanks for posting this. The step by step explanation each of the commands is a real help to a Linux n00b like me :-)</p>
+                                </div>
+                            </article>
+                            <article class="row">
+                                <div class="large-2 columns">
                                     <address class="author">
                                         <a rel="author" href="http://misterphilip.com">
                                             <span class="th">
                                                 <img src="assets/img/profile_pic.jpeg">
                                             </span>
-                                            Philip Lawrence
+                                            Philip
                                         </a>
                                     </address>
-                                    <hr class="separator">
-                                    <time itemprop="pubdate" datetime="2013-07-05" class="time" title="July 5, 2013">Today, 3:45PM</time>
-                                    <p class="community">
-                                        <a href="#comments">3 <span class="icon icon-bubble"></span></a>
-                                        <a href="#users">15 <span class="icon icon-thumbs-up"></span></a>
-                                    </p>
+                                    <time itemprop="pubdate" datetime="2013-07-05" title="July 5, 2013">Today, 3:45PM</time>
                                 </div>
-                            </div>
-                            <div class="large-10 small-10 columns">
-                                <header>
-                                    <h3><a href="#">New Article 5</a></h3>
-                                </header>
-                                <p>Bacon ipsum dolor sit amet frankfurter beef ribs spare ribs salami capicola ball tip pancetta pork cow leberkas. Tri-tip pork pig, andouille flank beef ribs doner tongue rump jerky swine filet mignon hamburger. Drumstick meatloaf tenderloin jowl spare ribs beef pork ham hock bresaola beef ribs jerky turkey prosciutto rump meatball. Ball tip tongue doner, jerky bacon strip steak pancetta shankle cow meatloaf hamburger flank. Doner brisket pork loin shankle beef ribs, bacon shank fatback flank chuck kielbasa frankfurter meatloaf venison. Shoulder beef ribs ham hock short ribs sausage. Sausage chicken capicola jowl. &hellip; <a href="#" class="read-more">Read More &raquo;</a></p>
-                            </div>
-                        </article>
-                        
-                        <article class="row teaser">
-                            <div class="large-2 small-2 columns">
-                                <div class="info">
-                                    <div class="category">
-                                        <a href="#">Tutorial</a>
-                                    </div>
+                                <div class="large-10 columns">
+                                    <p>Nice guide, Tony. What about adding a part for the FTP server? Should save everyone a lot of trouble.</p>
+                                </div>
+                            </article>
+                            <article class="row">
+                                <div class="large-2 columns">
                                     <address class="author">
                                         <a rel="author" href="http://misterphilip.com">
                                             <span class="th">
                                                 <img src="assets/img/profile_pic.jpeg">
                                             </span>
-                                            Philip Lawrence
+                                            Philip
                                         </a>
                                     </address>
-                                    <hr class="separator">
-                                    <time itemprop="pubdate" datetime="2013-07-05" class="time" title="July 5, 2013">Today, 3:45PM</time>
-                                    <p class="community">
-                                        <a href="#comments">3 <span class="icon icon-bubble"></span></a>
-                                        <a href="#users">15 <span class="icon icon-thumbs-up"></span></a>
-                                    </p>
+                                    <time itemprop="pubdate" datetime="2013-07-05" title="July 5, 2013">Today, 3:45PM</time>
                                 </div>
-                            </div>
-                            <div class="large-10 small-10 columns">
-                                <header>
-                                    <h3><a href="#">New Article 5</a></h3>
-                                </header>
-                                <p>Bacon ipsum dolor sit amet frankfurter beef ribs spare ribs salami capicola ball tip pancetta pork cow leberkas. Tri-tip pork pig, andouille flank beef ribs doner tongue rump jerky swine filet mignon hamburger. Drumstick meatloaf tenderloin jowl spare ribs beef pork ham hock bresaola beef ribs jerky turkey prosciutto rump meatball. Ball tip tongue doner, jerky bacon strip steak pancetta shankle cow meatloaf hamburger flank. Doner brisket pork loin shankle beef ribs, bacon shank fatback flank chuck kielbasa frankfurter meatloaf venison. Shoulder beef ribs ham hock short ribs sausage. Sausage chicken capicola jowl. &hellip; <a href="#" class="read-more">Read More &raquo;</a></p>
-                            </div>
-                        </article>
-                        
-                        <article class="row teaser">
-                            <div class="large-2 small-2 columns">
-                                <div class="info">
-                                    <div class="category">
-                                        <a href="#">Tutorial</a>
-                                    </div>
+                                <div class="large-10 columns">
+                                    <p>Very nicely done, thank you!</p>
+                                </div>
+                            </article>
+                            <article class="row">
+                                <div class="large-2 columns">
                                     <address class="author">
                                         <a rel="author" href="http://misterphilip.com">
                                             <span class="th">
                                                 <img src="assets/img/profile_pic.jpeg">
                                             </span>
-                                            Philip Lawrence
+                                            Philip
                                         </a>
                                     </address>
-                                    <hr class="separator">
-                                    <time itemprop="pubdate" datetime="2013-07-05" class="time" title="July 5, 2013">Today, 3:45PM</time>
-                                    <p class="community">
-                                        <a href="#comments">3 <span class="icon icon-bubble"></span></a>
-                                        <a href="#users">15 <span class="icon icon-thumbs-up"></span></a>
-                                    </p>
+                                    <time itemprop="pubdate" datetime="2013-07-05" title="July 5, 2013">Today, 3:45PM</time>
                                 </div>
-                            </div>
-                            <div class="large-10 small-10 columns">
-                                <header>
-                                    <h3><a href="#">New Article 5</a></h3>
-                                </header>
-                                <p>Bacon ipsum dolor sit amet frankfurter beef ribs spare ribs salami capicola ball tip pancetta pork cow leberkas. Tri-tip pork pig, andouille flank beef ribs doner tongue rump jerky swine filet mignon hamburger. Drumstick meatloaf tenderloin jowl spare ribs beef pork ham hock bresaola beef ribs jerky turkey prosciutto rump meatball. Ball tip tongue doner, jerky bacon strip steak pancetta shankle cow meatloaf hamburger flank. Doner brisket pork loin shankle beef ribs, bacon shank fatback flank chuck kielbasa frankfurter meatloaf venison. Shoulder beef ribs ham hock short ribs sausage. Sausage chicken capicola jowl. &hellip; <a href="#" class="read-more">Read More &raquo;</a></p>
-                            </div>
-                        </article>
-                        
-                        <article class="row teaser">
-                            <div class="large-2 small-2 columns">
-                                <div class="info">
-                                    <div class="category">
-                                        <a href="#">Tutorial</a>
-                                    </div>
+                                <div class="large-10 columns">
+                                    <p>Thank you for posting this walk thru. Could someone please post some reference material on this.<br />
+                                    Is the command line bash, korn, Z shell ?, virtual host ?.<br />
+                                    I have been putting all of my energy into learning conditional programing etc and have only touched on the command line and know 0 on virtual host environments.<br />
+                                    Thank you.</p>
+                                </div>
+                            </article>
+                            <article class="row author-reply">
+                                <div class="large-2 columns">
                                     <address class="author">
                                         <a rel="author" href="http://misterphilip.com">
                                             <span class="th">
                                                 <img src="assets/img/profile_pic.jpeg">
                                             </span>
-                                            Philip Lawrence
+                                            Philip
                                         </a>
                                     </address>
-                                    <hr class="separator">
-                                    <time itemprop="pubdate" datetime="2013-07-05" class="time" title="July 5, 2013">Today, 3:45PM</time>
-                                    <p class="community">
-                                        <a href="#comments">3 <span class="icon icon-bubble"></span></a>
-                                        <a href="#users">15 <span class="icon icon-thumbs-up"></span></a>
-                                    </p>
+                                    <time itemprop="pubdate" datetime="2013-07-05" title="July 5, 2013">Today, 3:45PM</time>
+                                </div>
+                                <div class="large-10 columns">
+                                    <p>All commands where issued using the Bash shell (default in most all Linux distributions) though they would work fine in any other shell.</p>
+                                    <p>Keep in mind though that this is a Debian/Ubuntu specific tutorial. The a2ensite command + the configuration layout is all relevant to how Debian does things.</p>
+                                </div>
+                            </article>
+                            <hr class="separator">
+                            <h4>Leave a comment</h4>
+                            <div class="row">
+                                <div class="large-8 small-12 columns">
+                                    <p>Have a question or want to contribute to the article? Leave a comment below.</p>
+                                    <form>
+                                        <textarea placeholder="Your comment&hellip;"></textarea>
+                                        <input type="submit" class="button small success right" value="Add Comment">
+                                    </form>
+                                </div>
+                                <div class="large-3 small-12 columns large-offset-1">
+                                    <h6>Guidelines:</h6>
+                                    <ul>
+                                        <li>Stay on topic</li>
+                                        <li>Be polite &amp; classy</li>
+                                        <li>Some formatting allowed (<a href="#">help</a>)</li>
+                                        <li>Having trouble? Use our <a href="http://forums.phpfreaks.com">forums</a> for help</li>
+                                    </ul>
                                 </div>
                             </div>
-                            <div class="large-10 small-10 columns">
-                                <header>
-                                    <h3><a href="#">New Article 5</a></h3>
-                                </header>
-                                <p>Bacon ipsum dolor sit amet frankfurter beef ribs spare ribs salami capicola ball tip pancetta pork cow leberkas. Tri-tip pork pig, andouille flank beef ribs doner tongue rump jerky swine filet mignon hamburger. Drumstick meatloaf tenderloin jowl spare ribs beef pork ham hock bresaola beef ribs jerky turkey prosciutto rump meatball. Ball tip tongue doner, jerky bacon strip steak pancetta shankle cow meatloaf hamburger flank. Doner brisket pork loin shankle beef ribs, bacon shank fatback flank chuck kielbasa frankfurter meatloaf venison. Shoulder beef ribs ham hock short ribs sausage. Sausage chicken capicola jowl. &hellip; <a href="#" class="read-more">Read More &raquo;</a></p>
-                            </div>
-                        </article>
-                        
-                        <article class="row teaser">
-                            <div class="large-2 small-2 columns">
-                                <div class="info">
-                                    <div class="category">
-                                        <a href="#">Tutorial</a>
-                                    </div>
-                                    <address class="author">
-                                        <a rel="author" href="http://misterphilip.com">
-                                            <span class="th">
-                                                <img src="assets/img/profile_pic.jpeg">
-                                            </span>
-                                            Philip Lawrence
-                                        </a>
-                                    </address>
-                                    <time itemprop="pubdate" datetime="2013-07-05" class="time" title="July 5, 2013">Today, 3:45PM</time>
-                                    <p class="community">
-                                        <a href="#comments">3 <span class="icon icon-bubble"></span></a>
-                                        <a href="#users">15 <span class="icon icon-thumbs-up"></span></a>
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="large-10 small-10 columns">
-                                <header>
-                                    <h3><a href="#">New Article 5</a></h3>
-                                </header>
-                                <p>Bacon ipsum dolor sit amet frankfurter beef ribs spare ribs salami capicola ball tip pancetta pork cow leberkas. Tri-tip pork pig, andouille flank beef ribs doner tongue rump jerky swine filet mignon hamburger. Drumstick meatloaf tenderloin jowl spare ribs beef pork ham hock bresaola beef ribs jerky turkey prosciutto rump meatball. Ball tip tongue doner, jerky bacon strip steak pancetta shankle cow meatloaf hamburger flank. Doner brisket pork loin shankle beef ribs, bacon shank fatback flank chuck kielbasa frankfurter meatloaf venison. Shoulder beef ribs ham hock short ribs sausage. Sausage chicken capicola jowl. &hellip; <a href="#" class="read-more">Read More &raquo;</a></p>
-                            </div>
-                        </article>
-                    </section>
+                        </section>
+                    </article>
+                    
                 </div>
                 <aside class="large-3 columns" id="sidebar">
                     <div class="row">
@@ -442,6 +448,7 @@
 <script src="assets/js/foundation/foundation.orbit.js"></script>
 <script src="assets/js/foundation/foundation.section.js"></script>
 <script src="assets/js/foundation/foundation.topbar.js"></script>
+<script src="assets/js/vendor/prism.js"></script>
 <script>
     $(document).foundation();
 </script>  
