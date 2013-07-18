@@ -28,7 +28,7 @@
             <ul class="title-area">
                 <li class="name">
                     <h1 class="logo">
-                        <a href="#" title="PHP Freaks"><span>PHP Freaks</span></a>
+                        <a href="homepage.html" title="PHP Freaks"><span>PHP Freaks</span></a>
                     </h1>
                 </li>
                 <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
@@ -59,10 +59,16 @@
                             <li><a href="http://forums.phpfreaks.com/forum/15-mysql-help/">MySQL Help</a></li>
                         </ul>
                     </li>
-                    <li><a href="#">Articles</a></li>
+                    <li class="has-dropdown active">
+                        <a href="#">Articles</a>
+                        <ul class="dropdown">
+                            <li><a href="article.html">Without sidebar</a></li>
+                            <li><a href="article-sidebar.html">With sidebar</a></li>
+                        </ul>
+                    </li>
                     <li><a href="#">Tutorials</a></li>
                     <li><a href="#">News</a></li>
-                    <li class="active"><a href="#">Blogs</a></li>
+                    <li><a href="#">Blogs</a></li>
                     <li class="has-dropdown">
                         <a href="#">Code Library</a>
                         <ul class="dropdown">
@@ -190,6 +196,21 @@ echo '127.0.0.1 foo.local' | sudo tee -a /etc/hosts</code></pre>
 sudo chown :www-data /var/www/sites/foo.local/uploads
 sudo chmod g+w /var/www/sites/foo.local/uploads</code></pre>
                             </figure>
+                            <p>We'll cover how to setup an FTP server on the next page</p>
+                        </div>
+                        
+                        <div class="pagination-centered">
+                            <ul class="pagination">
+                                <li class="arrow unavailable"><a href="">&laquo;</a></li>
+                                <li class="current"><a href="">1</a></li>
+                                <li><a href="">2</a></li>
+                                <li><a href="">3</a></li>
+                                <li><a href="">4</a></li>
+                                <li class="unavailable"><a href="">…</a></li>
+                                <li><a href="">12</a></li>
+                                <li><a href="">13</a></li>
+                                <li class="arrow"><a href="">&raquo;</a></li>
+                            </ul>
                         </div>
                         
                         <!-- End article content -->                        
