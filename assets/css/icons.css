@@ -1,3 +1,7 @@
+/*
+ * Icon set file
+ * http://icomoon.io/
+ */
 @font-face {
 	font-family: 'icomoon';
 	src:url('../fonts/icomoon.eot');
@@ -27,7 +31,7 @@ Instead of a list of all class selectors,
 you can use the generic selector below, but it's slower:
 [class*="icon-"] {
 */
-.icon-search, .icon-thumbs-up, .icon-thumbs-up-2, .icon-star, .icon-star-2, .icon-star-3, .icon-bubbles, .icon-user, .icon-bubble {
+.icon-search, .icon-thumbs-up, .icon-thumbs-up-2, .icon-star, .icon-star-2, .icon-star-3, .icon-bubbles, .icon-user, .icon-bubble, .icon-google-plus, .icon-facebook, .icon-twitter, .icon-feed, .icon-github, .icon-tags {
 	font-family: 'icomoon';
 	speak: none;
 	font-style: normal;
@@ -63,4 +67,22 @@ you can use the generic selector below, but it's slower:
 }
 .icon-bubble:before {
 	content: "\e008";
+}
+.icon-google-plus:before {
+	content: "\e009";
+}
+.icon-facebook:before {
+	content: "\e00a";
+}
+.icon-twitter:before {
+	content: "\e00b";
+}
+.icon-feed:before {
+	content: "\e00c";
+}
+.icon-github:before {
+	content: "\e00d";
+}
+.icon-tags:before {
+	content: "\e00e";
 }
