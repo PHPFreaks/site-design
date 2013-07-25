@@ -88,6 +88,15 @@ figcaption
 {
     max-width: 80em;
 }
+.tags-list li
+{
+    margin-left: 1em;
+}
+.tags-list .list-icon i
+{
+    line-height: 1.4em;
+    font-size: 1.2em;
+}
 /* -----------------------------------------
    Shared: Header
 ----------------------------------------- */
@@ -384,6 +393,10 @@ body > footer p
     border-bottom: 1px solid #EDEDED;
     padding: .8em 0;
 }
+article .tags-list
+{
+    font-size: .8em;
+}
 article.teaser
 {
     
@@ -465,6 +478,10 @@ article .community a:last-of-type
 /* -----------------------------------------
    Article
 ----------------------------------------- */
+article.full-article.has-tags > header h2
+{
+    margin-bottom: .1em;
+}
 article.full-article > footer
 {
     border-top: 4px solid #1984bc;
