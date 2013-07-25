@@ -487,6 +487,7 @@ article.full-article > footer
 {
     font-style: normal;
     text-align: center;
+    word-wrap: break-word;
 }
 #comments time
 {
