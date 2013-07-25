@@ -131,15 +131,15 @@
                             <h2>A simple Debian based dev enviornment</h2>
                         </header>
                         <div class="article-content">
-                            <p>The <kbd>s</kbd> switch for chmod sets the sticky bit and ensures that all directories created within /var/www will also belong to the www group.</p>
+                            <p>The <code class="language-bash">s</code> switch for chmod sets the sticky bit and ensures that all directories created within /var/www will also belong to the www group.</p>
                             <p>We need to make sure www can write to the directories where our vhost configs are kept as well.</p>
                             <figure>
-                               <pre><code class="language-bash">sudo chown :www /etc/apache2/sites-*</code></pre>
+                               <pre class="language-bash"><code>sudo chown :www /etc/apache2/sites-*</code></pre>
                                <figcaption>Make the directory writeable!</figcaption>
                             </figure>
                             <p>Next, we are going to create a template vhost configuration. We will use this to generate configurations for each of our sites.</p>
                             <figure>
-                                <pre><code class="language-bash">&lt;VirtualHost *:80&gt;
+                                <pre class="language-bash line-numbers"><code>&lt;VirtualHost *:80&gt;
     
     ServerName {SITE}.local
     
@@ -168,10 +168,7 @@
                             <p>Save that as /etc/apache2/sites-available/example.conf</p>
                             <p>Now, lets create a simple test site.</p>
                             <figure>
-                                <pre><code class="language-php">echo ($test == 'false');</code></pre>
-                            </figure>
-                            <figure>
-                                <pre><code class="language-php">mkdir -p /var/www/sites/foo.local/{htdocs,logs}
+                                <pre class="language-bash"><code>mkdir -p /var/www/sites/foo.local/{htdocs,logs}
 echo '&lt;?php phpinfo(); ?&gt;' > /var/www/sites/foo.local/htdocs/index.php
 cd /etc/apache2/sites-available
 sed -e 's/{SITE}/foo/g' example.conf > foo.conf
@@ -192,7 +189,7 @@ echo '127.0.0.1 foo.local' | sudo tee -a /etc/hosts</code></pre>
                             I might go into further details about that in another tutorial given the chance and the interest.</p>
                             <p>One thing to note. If you need directories within your web site to be writable by Apache you will have to make them belong to the www-data group, and this group will need write permissions. eg;</p>
                             <figure>
-                                <pre><code class="language-bash">mkdir -p /var/www/sites/foo.local/uploads
+                                <pre class="language-bash"><code>mkdir -p /var/www/sites/foo.local/uploads
 sudo chown :www-data /var/www/sites/foo.local/uploads
 sudo chmod g+w /var/www/sites/foo.local/uploads</code></pre>
                             </figure>
@@ -470,6 +467,8 @@ sudo chmod g+w /var/www/sites/foo.local/uploads</code></pre>
 <script src="assets/js/foundation/foundation.section.js"></script>
 <script src="assets/js/foundation/foundation.topbar.js"></script>
 <script src="assets/js/vendor/prism.js"></script>
+<script src="assets/js/vendor/prism.highlight.js"></script>
+<script src="assets/js/vendor/prism.numbers.js"></script>
 <script>
     $(document).foundation();
 </script>  
