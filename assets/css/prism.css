@@ -199,3 +199,15 @@ pre.line-numbers > code {
 			padding-right: 0.8em;
 			text-align: right;
 		}
+pre > div.toolbar {
+    position: absolute;
+    top: 1em;
+    right: 1.2em;
+    font-size: .8em;
+    color: #999;
+    cursor: pointer;
+}
+    /* @TODO: look into making this more efficient */
+    pre > div.toolbar:hover {
+        color: #444;
+    }
